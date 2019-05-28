@@ -4,4 +4,7 @@ class DashboardController < ApplicationController
 
   def customers_index
   end
+
+  def customers_show
+  end
 end

@@ -4,7 +4,8 @@ var app = angular.module('app02');
 
 app.controller('CustomersCtrl', ["$scope", "$log", "Customer", function($scope, $log, Customer) {
   $scope.app = "Customers List";
-
+  $scope.customer = [];
+  
   $scope.getCustomers = function() {
     Customer.getCustomers()
       .then(function(response) {
@@ -36,10 +37,16 @@ app.controller('CustomersCtrl', ["$scope", "$log", "Customer", function($scope, 
       });
     }
   };
+  
   $scope.addCustomer = function(customer) {
     Customer.addCustomer(angular.copy(customer)).then(function(response) {
       $scope.customers.push(angular.copy(response.data.data));
       alert("Cliente cadastrado com sucesso!");
     });
+  };
+
+  $scope.showCustomer = function(customer) {
+    $scope.customers = []
   }
+
 }])

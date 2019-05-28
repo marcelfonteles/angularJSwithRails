@@ -14,5 +14,9 @@ app.service('Customer', ["$http","$log", function($http, $log) {
 
   this.deleteCustomer = function(customer_id) {
     return $http.delete('/api/customers/' + customer_id);
+  };
+
+  this.showCustomer = function(customer_id) {
+    return $http.get('/api/customers/' + customer_id);
   }
 }])

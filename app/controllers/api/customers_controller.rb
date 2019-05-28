@@ -6,6 +6,11 @@ module Api
       render json: {status: 200, data: @customers}
     end
 
+    def show
+      @customer = Customer.find(params[:id])
+      render json: {status: 200, data: @customers}
+    end
+
     def create
       @customer = Customer.new(customers_params)
       if @customer.save
