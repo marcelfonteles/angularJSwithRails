@@ -1,0 +1,64 @@
+<div class='container' ng-controller='EventsCtrl' ng-cloack>
+	<div class='jumbotron'>
+		<h1>AngularJS on Rails</h1>
+		<p ng-bind='app'></p>
+		<div class='row'>
+			<div class='col-md-12'>
+				<hr>
+				<button class='btn btn-primary' ng-click='showEvents()' ng-disabled='showHideButton()'>Mostrar Eventos</button>
+				<button class='btn btn-danger' ng-click='hideEvents()' ng-disabled='notShowHideButton()'>Ocultar Eventos</button>
+			</div>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-12'>
+			<input type="text" placeholder='Search' ng-model='buscador' class='form-control'>
+			<table class='table table-striped'>
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th>Date</th>
+					<th>Place</th>
+					<th>Description</th>
+					<th>Apagar</th>
+				</tr>
+				<tr ng-repeat='event in events | filter: buscador'>
+					<td><input type='checkbox' ng-model='event.selected'></td>
+					<td>{{event.name}}</td>
+					<td>{{event.event_date}}</td>
+					<td>{{event.place}}</td>
+					<td>{{event.description}}</td>
+					<td><button class='btn btn-danger btn-sm' ng-click='deleteEvent(event)'>Apagar</button></td>
+				</tr>
+			</table>
+			<button class='btn btn-danger btn-block' ng-disabled='disabledDelete(events)' ng-click='deleteEvents(events)'>Apagar Evento(s)</button>
+			<hr>
+		</div>
+	</div>
+		<div class="row">
+     		<div class="col-md-12">
+		      	<form ng-submit="addEvent(event)">
+		        	<div class="form-group">
+		         		<input type="text" class="form-control" name="name" placeholder="Name" ng-model="event.name" />
+		          	</div>
+		          	<div class="form-group">
+		            	<input type="text" class="form-control" name="place" placeholder="Place" ng-model="event.place" />
+		          	</div>
+		          	<div class="form-group">
+			            <input type="text" class="form-control" name="event_date" placeholder="Event date" ng-model="event.event_date" />
+		    	    </div>
+		          	<div class="form-group">
+		            	<input type="text" class="form-control" name="description" placeholder="Description" ng-model="event.description" />
+		          	</div>
+		          	<button type="submit" class="btn btn-primary btn-block">Add</button>
+		        </form>
+    		</div>
+    	</div>
+    </div>
+</div>
+<footer>
+	<hr>
+	<p><small>Batata</small></p>
+	<hr>
+</footer>
+

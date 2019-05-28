@@ -1,0 +1,31 @@
+<div ng-controller='CustomersCtrl' class='container'>
+  <div class='jumbotron'>
+    <h1>Customers Index</h1>
+    <p ng-bind='app'></p>
+  </div>
+  <table class='table table-striped'>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>CPF</th>
+      <th>Address</th>
+    </tr>
+    <tr ng-repeat='customer in customers'>
+      <td><input type='checkbox' ng-model='customer.selected'></td></td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.cpf}}</td>
+      <td>{{customer.address}}</td>
+    </tr>
+  </table>
+  <button class='btn btn-danger' ng-disabled='disabledDeleteCustomers(customers)' ng-click='deleteCustomers(customers)'>Apagar Cliente(s)</button>
+  <hr>
+  <div class='form-group'>
+    <input type='text' class='form-control' placeholder="Name" ng-model='customer.name'>
+    <input type='text' class='form-control' placeholder="Phone" ng-model='customer.phone'>
+    <input type='text' class='form-control' placeholder="CPF" ng-model='customer.cpf'>
+    <input type='text' class='form-control' placeholder="Address" ng-model='customer.address'>
+    <button class='btn btn-success' ng-click='addCustomer(customer)'>Cadastrar Cliente</button>
+  </div>
+</div>
