@@ -27,4 +27,8 @@ app.service('Customer', ["$http","$log", function($http, $log) {
   this.deleteLoan = function(loan_id) {
     return $http.delete('/api/loans/' + loan_id) ;
   }
+
+  this.addLoan = function(loan) {
+    return $http.post('/api/loans', loan)
+  }
 }])

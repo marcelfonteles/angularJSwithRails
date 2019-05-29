@@ -69,4 +69,20 @@ app.controller('CustomersCtrl', ["$scope", "$log", "Customer", function($scope, 
     });    
   };
 
+  $scope.disabledDeleteLoans = function(loans) {
+    return !loans.some(function(loan) {
+      return loan.selected === true
+    })
+  }
+
+  $scope.addLoan = function(loan) {
+    loan.customer_id = $scope.customers[0].id;
+    Customer.addLoan(loan).then(function(response) {
+      alert(response.data.message);
+      $scope.loans.push(response.data.data);
+    })
+
+
+  }
+
 }])
