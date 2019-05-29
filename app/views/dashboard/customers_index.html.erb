@@ -2,24 +2,8 @@
   <div class='jumbotron'>
     <h1>Customers Index</h1>
     <p ng-bind='app'></p>
+    <button class='btn btn-primary' ng-click='getCustomers()' ng-if='!(customers.length > 1)'>Voltar</button>
   </div>
-  <table class='table table-striped' ng-if='customer.length !== 0'>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>CPF</th>
-      <th>Address</th>
-    </tr>
-    <tr>
-      <td>{{customer.name}}</td>
-      <td>{{customer.phone}}</td>
-      <td>{{customer.cpf}}</td>
-      <td>{{customer.address}}</td>
-    </tr>
-  </table>
-
-
   <table class='table table-striped'>
     <tr>
       <th></th>
@@ -30,13 +14,38 @@
     </tr>
     <tr ng-repeat='customer in customers'>
       <td><input type='checkbox' ng-model='customer.selected'></td>
-      <td><a href='' ng-click='showCustomer(customer)'>{{customer.name}}</a></td>
+      <td ng-if='isIndex'><a href='' ng-click='showCustomer(customer)'>{{customer.name}}</a></td>
+      <td ng-if='!isIndex'>{{customer.name}}</td>
       <td>{{customer.phone}}</td>
       <td>{{customer.cpf}}</td>
       <td>{{customer.address}}</td>
     </tr>
   </table>
-  <div ng-if='customers.length !== 0'>
+  <hr>
+  <table class='table table-striped' ng-if="!isIndex">
+    <tr>
+      <th></th>
+      <th>Loja</th>
+      <th>Valor</th>
+      <th>Parcelas</th>
+      <th>Data</th>
+    </tr>
+    <tr ng-repeat='loan in loans' ng-if='loans.length !== 0'>
+      <td><input type="checkbox" ng-model='loan.selected'></td>
+      <td>{{loan.store}}</td>
+      <td>{{loan.amount}}</td>
+      <td>{{loan.portions}}</td>
+      <td>{{loan.date}}</td>
+    </tr>
+    <tr ng-if='loans.length === 0 '>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
+    </tr>
+  </table>
+  
+  <div ng-if='isIndex'>
     <button class='btn btn-danger' ng-disabled='disabledDeleteCustomers(customers)' ng-click='deleteCustomers(customers)' >Apagar Cliente(s)</button>
     <hr>
     <div class='form-group'>
@@ -45,6 +54,18 @@
       <input type='text' class='form-control' placeholder="CPF" ng-model='customer.cpf'>
       <input type='text' class='form-control' placeholder="Address" ng-model='customer.address'>
       <button class='btn btn-success' ng-click='addCustomer(customer)'>Cadastrar Cliente</button>
+    </div>
+  </div>
+  
+  <div ng-if='!isIndex'>
+    <button class='btn btn-danger' ng-click='deleteLoans(loans)'>Apagar Emprestimo(s)</button>
+    <hr>
+    <div class='form-group'>
+      <input type='text' placeholder='Store' class='form-control' ng-model='loan.store'>
+      <input type='text' placeholder='Amount' class='form-control' ng-model='loan.amount'>
+      <input type='text' placeholder='Portions' class='form-control' ng-model='loan.portions'>
+      <input type='text' placeholder='Date' class='form-control' ng-model='loan.date'>
+      <button class='btn btn-success'>Cadastrar Emprestimo</button>
     </div>
   </div>
 </div>

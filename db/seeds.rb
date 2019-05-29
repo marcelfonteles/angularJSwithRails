@@ -29,3 +29,8 @@ end
                   phone: '+55 85 9 9999-9999')
 end
 puts "Populando banco.....[OK]"
+
+
+10.times do 
+  Loan.create(store: 'Loja 1', amount: 1250, portions: 3, date: DateTime.now, customer_id: Customer.all.sample.id)
+end

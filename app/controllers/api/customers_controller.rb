@@ -8,7 +8,8 @@ module Api
 
     def show
       @customer = Customer.find(params[:id])
-      render json: {status: 200, data: @customers}
+      @loans = Loan.all.where(customer_id: params[:id])
+      render json: {status: 200, data: @customer, data2: @loans}
     end
 
     def create
@@ -34,7 +35,5 @@ module Api
     def customers_params
       params.require(:customer).permit(:name, :address, :cpf, :phone)
     end
-
-  
   end
 end

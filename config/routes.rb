@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   namespace :api do
   	resources :events, only: [:index, :create, :destroy, :show]
     resources :customers, only: [:index, :destroy, :create, :show]
+    resources :loans, only: [:destroy]
+    # get 'loans/:customer_id', to: 'loans#customer_loans'
   end
   
   

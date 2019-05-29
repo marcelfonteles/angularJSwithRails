@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: MyString
+  amount: 1.5
+  portions: 1
+  date: 2019-05-29
+  customer: one
+
+two:
+  store: MyString
+  amount: 1.5
+  portions: 1
+  date: 2019-05-29
+  customer: two

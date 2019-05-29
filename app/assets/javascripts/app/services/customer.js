@@ -19,4 +19,12 @@ app.service('Customer', ["$http","$log", function($http, $log) {
   this.showCustomer = function(customer_id) {
     return $http.get('/api/customers/' + customer_id);
   }
+  
+  this.getCustomerLoans = function(customer_id) {
+    return $http.get('/api/loans/' + customer_id);
+  }
+
+  this.deleteLoan = function(loan_id) {
+    return $http.delete('/api/loans/' + loan_id) ;
+  }
 }])
